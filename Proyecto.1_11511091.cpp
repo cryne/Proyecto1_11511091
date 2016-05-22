@@ -18,6 +18,7 @@ int juego(Carta**,int*,int*,int*,int,int,int);
 int resultados(Carta**,int*,int*,int);
 Carta** barajas(const int,const int);
 void imprime_carta(Carta,int);
+void mostrar_manos();
 int main(int argc, char const *argv[])
 {
 	initscr();
@@ -125,6 +126,20 @@ int apuestas(int dinero){
 		dato.clear();
 	}	
 	return apuesta;
+}
+void mostrar_manos(){
+	mvprintw(14,48,"---Manos Especiales---");
+	mvprintw(15,48,"|*Par de Jacks     x1|");
+	mvprintw(16,48,"|*Dos Pares        x2|");
+	mvprintw(17,48,"|*Trio             x3|");
+	mvprintw(18,48,"|*Escalera 4       x4|");
+	mvprintw(19,48,"|*Mismo manjar     x5|");
+	mvprintw(20,48,"|*Full house       x9|");
+	mvprintw(21,48,"|*Cuatro iguales  x25|");
+	mvprintw(22,48,"|*Escalera simple x50|");
+	mvprintw(23,48,"|*Escalera       x100|");
+	mvprintw(24,48,"|*Escalera Real  x250|");
+	mvprintw(25,48,"----------------------");
 }
 int resultados(Carta** baraja,int* ies,int* jotas,int apuesta){
 	int numeros[5];
@@ -405,6 +420,7 @@ int juego(Carta** baraja,int*ies,int*jotas,int*opciones_carta,int control_elecci
 				while(descision!=0&&descision!=1){
 					if(opciones_carta[i]==0){
 						mvprintw(12,0,"-si ingresa presiona alguna tecla diferente a las opciones se le volvera a pedir-\nDesea quedarse con la carta numero %d?\n1-si\n0-no",i+1);
+						mostrar_manos();
 						if((descision=getch())==48){
 							descision=0;
 						}else if(descision==49){
@@ -423,6 +439,7 @@ int juego(Carta** baraja,int*ies,int*jotas,int*opciones_carta,int control_elecci
 			while(control!=0&&control!=1){
 				limpiar_y(12);
 				mvprintw(12,0,"-si ingresa presiona alguna tecla diferente a las opciones se le volvera a pedir-\nDesea continuar el juego, guardarlo o terminarlo?\n1-continuar\n2-terminar\n0-guardar");
+				mostrar_manos();
 				control=getch();
 				if(control==48){
 					limpiar_y(12);
