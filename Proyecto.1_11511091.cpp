@@ -5,12 +5,17 @@
 #include <sstream>
 #include <cstdlib>
 #include <ctime>
+#include <stdlib.h>
+using std::cin;
 using std::ostringstream;
 using std::string;
+using std::atoi;
 void limpiar();
 void limpiar_y(int);
 void guardar();
+int apuestas(int);
 void juego(Carta**,int*,int*,int*,int,int);
+int resultados(Carta**,int*,int*,int);
 Carta** barajas(const int,const int);
 int main(int argc, char const *argv[])
 {
@@ -88,13 +93,50 @@ void limpiar_y(int y){
 	}
 	move(y,0);
 }
+int apuestas(int dinero){
+	int apuesta=dinero+1;	
+	string dato="";
+	char valor;
+	int control;
+	mvprintw(12,0,"De su saldo actual de %d cuanto desea apostar?",dinero);
+	while(apuesta>dinero&&apuesta!=0){
+		while((control=getch())!=10){
+			limpiar();
+			mvprintw(12,0,"De su saldo actual de %d cuanto desea apostar?",dinero);
+			if(control>47&&control<58){
+				valor=control;
+				dato.push_back(valor);
+				mvprintw(13,0,"%s",dato.c_str());
+			}else{
+				mvprintw(13,0,"%s",dato.c_str());
+			}
+			apuesta=atoi(dato.c_str());
+		}
+		dato.clear();
+	}	
+	return apuesta;
+}
+int resultados(Carta** baraja,int* ies,int* jotas,int apuesta){
+	int numeros[5]
+	for (int i = 0; i < 5; ++i)
+	{
+		if(baraja[ies[i]][jotas[i]]=)
+	}
+}
 void guardar(){
 
 }
 void juego(Carta** baraja,int*ies,int*jotas,int*opciones_carta,int control_eleccion,int dinero){
 	int control=-1;
-	while(control!=0){ 
-		control=-1;			
+	int control_rondas=1;
+	while(control!=0){
+		limpiar();
+		control=-1;
+		int apuesta;
+		if(control_rondas==1);
+			apuesta=apuestas(dinero);
+	    }
+		limpiar();	
 		for (int i = 0; i < 5; ++i)
 		{	
 			if(i==0&&opciones_carta[i]==0){
@@ -277,7 +319,7 @@ void juego(Carta** baraja,int*ies,int*jotas,int*opciones_carta,int control_elecc
 		mvprintw(6,64,"|           |");
 		mvprintw(7,64,"%s          %s",baraja[ies[4]][jotas[4]].getNumero().c_str(),baraja[ies[4]][jotas[4]].getNumero().c_str());
 		mvprintw(8,64,"*-----------*");
-		mvprintw(10,0,"Saldo disponible:%d",dinero);
+		mvprintw(10,0,"Saldo no apostado:%d apuesta actual:%d",dinero,apuesta);		
 		for (int i = 0; i < 5; ++i)
 		{
 			int descision=-1;   				
@@ -296,7 +338,10 @@ void juego(Carta** baraja,int*ies,int*jotas,int*opciones_carta,int control_elecc
 			}   				
 			opciones_carta[i]=descision;
 		}
+		if(control_rondas==2){
+			control_rondas=1;
 
+		}
 		while(control!=0&&control!=1){
 			mvprintw(12,0,"-si ingresa presiona alguna tecla diferente a las opciones se le volvera a pedir-\nDesea continuar el juego, guardarlo o terminarlo?\n1-continuar\n2-terminar\n0-guardar");
 			control=getch();
@@ -311,6 +356,7 @@ void juego(Carta** baraja,int*ies,int*jotas,int*opciones_carta,int control_elecc
 			limpiar_y(12);
 		}
 		limpiar();
+		control_rondas+=1;
 		control_eleccion=1;
 	}
 }
