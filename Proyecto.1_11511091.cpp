@@ -263,7 +263,7 @@ int juego(Carta** baraja,int*ies,int*jotas,int*opciones_carta,int control_elecci
 			dinero=dinero-apuesta;
 		}
 		limpiar();	
-		ies[0]=0;
+		/*ies[0]=0;
 		jotas[0]=0;
 		ies[1]=0;
 		jotas[1]=9;
@@ -272,10 +272,10 @@ int juego(Carta** baraja,int*ies,int*jotas,int*opciones_carta,int control_elecci
 		ies[3]=0;
 		jotas[3]=11;
 		ies[4]=0;
-		jotas[4]=12;
+		jotas[4]=12;*/
 		for (int i = 0; i < 5; ++i)
 		{	
-			/*if(i==0&&opciones_carta[i]==0){
+			if(i==0&&opciones_carta[i]==0){
 				if(control_eleccion==1){
 					int revision=1;
 					int random_tipo=0;
@@ -395,7 +395,7 @@ int juego(Carta** baraja,int*ies,int*jotas,int*opciones_carta,int control_elecci
 					jotas[i]=rand()%13;
 				}
 			}					
-		*/}
+		}
 		for (int i = 0; i < 5; ++i)
 		{	
 			imprime_carta(baraja[ies[i]][jotas[i]],i);
@@ -444,7 +444,7 @@ int juego(Carta** baraja,int*ies,int*jotas,int*opciones_carta,int control_elecci
 					control=getch();
 					if(control==48){
 						limpiar_y(12);
-						mvprintw(12,0,"si le da a la opcion podra continuar esta partida (presione cualquier tecla para volver al menu principal)");
+						mvprintw(12,0,"si le da a la opcion-continuar saldo anterior-podra continuar esta partida (presione cualquier tecla para volver al menu principal)");
 						return dinero;
 						control=0;
 					}else if(control==49){
