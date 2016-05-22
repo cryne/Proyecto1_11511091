@@ -44,7 +44,7 @@ int main(int argc, char const *argv[])
 			int* ies=new int[5];
 			int*jotas=new int[5];
 			int* opciones_carta=new int[5];
-			int control_rondas=1;
+			int control_rondas=0;
 			for (int i = 0; i < 5; ++i)
 			{
 				opciones_carta[i]=0;
@@ -60,7 +60,7 @@ int main(int argc, char const *argv[])
 			int* ies=new int[5];
 			int*jotas=new int[5];
 			int* opciones_carta=new int[5];
-			int control_rondas=1;
+			int control_rondas=0;
 			for (int i = 0; i < 5; ++i)
 			{
 				opciones_carta[i]=0;
@@ -173,79 +173,79 @@ int resultados(Carta** baraja,int* ies,int* jotas,int apuesta){
 	}
 	if (numeros[0]==1&&numeros[1]==10&&numeros[2]==11&&numeros[3]==12&&numeros[4]==13&&tipo[0]==tipo[1]&&tipo[1]==tipo[2]&&tipo[2]==tipo[3]&&tipo[3]==tipo[4])
 	{
-		mvprintw(11,0,"Escalera Real,Ganancia:%d",apuesta*250);
+		mvprintw(10,48,"Escalera Real,Ganancia:%d",apuesta*250);
 		return apuesta*250;
 	}else if (numeros[0]+1==numeros[1]&&numeros[1]+1==numeros[2]&&numeros[2]+1==numeros[3]&&numeros[3]+1==numeros[4]&&tipo[0]==tipo[1]&&tipo[1]==tipo[2]&&tipo[2]==tipo[3]&&tipo[3]==tipo[4])
 	{
-		mvprintw(11,0,"Escalera,Ganancia:%d",apuesta*100);
+		mvprintw(10,48,"Escalera,Ganancia:%d",apuesta*100);
 		return apuesta*100;
 	}else if (numeros[0]+1==numeros[1]&&numeros[1]+1==numeros[2]&&numeros[2]+1==numeros[3]&&numeros[3]+1==numeros[4])
 	{
-		mvprintw(11,0,"Escalera simple,Ganancia:%d",apuesta*50);
+		mvprintw(10,48,"Escalera simple,Ganancia:%d",apuesta*50);
 		return apuesta*50;
 	}else if (numeros[0]==numeros[1]&&numeros[0]==numeros[2]&&numeros[0]==numeros[3]||numeros[1]==numeros[2]&&numeros[1]==numeros[3]&&numeros[1]==numeros[4])
 	{
-		mvprintw(11,0,"4 iguales,Ganancia:%d",apuesta*25);
+		mvprintw(10,48,"4 iguales,Ganancia:%d",apuesta*25);
 		return apuesta*25;
 	}else if (numeros[0]==numeros[1]&&numeros[1]==numeros[2]&&numeros[3]==11&&numeros[3]==numeros[4]||numeros[2]==numeros[3]&&numeros[3]==numeros[4]&&numeros[0]==11&&numeros[0]==numeros[1])
 	{
-		mvprintw(11,0,"full house,Ganancia:%d",apuesta*9);
+		mvprintw(10,48,"full house,Ganancia:%d",apuesta*9);
 		return apuesta*9;
 	}
 	else if (numeros[0]==numeros[1]&&numeros[1]==numeros[2]&&numeros[3]==12&&numeros[3]==numeros[4]||numeros[2]==numeros[3]&&numeros[3]==numeros[4]&&numeros[0]==12&&numeros[0]==numeros[1])
 	{
-		mvprintw(11,0,"full house,Ganancia:%d",apuesta*9);
+		mvprintw(10,48,"full house,Ganancia:%d",apuesta*9);
 		return apuesta*9;
 	}
 	else if (numeros[0]==numeros[1]&&numeros[1]==numeros[2]&&numeros[3]==13&&numeros[3]==numeros[4]||numeros[2]==numeros[3]&&numeros[3]==numeros[4]&&numeros[0]==13&&numeros[0]==numeros[1])
 	{
-		mvprintw(11,0,"full house,Ganancia:%d",apuesta*9);
+		mvprintw(10,48,"full house,Ganancia:%d",apuesta*9);
 		return apuesta*9;
 	}
 	else if (numeros[0]==numeros[1]&&numeros[1]==numeros[2]&&numeros[3]==1&&numeros[3]==numeros[4]||numeros[2]==numeros[3]&&numeros[3]==numeros[4]&&numeros[0]==1&&numeros[0]==numeros[1])
 	{
-		mvprintw(11,0,"full house,Ganancia:%d",apuesta*9);
+		mvprintw(10,48,"full house,Ganancia:%d",apuesta*9);
 		return apuesta*9;
 	}else if (tipo[0]==tipo[1]&&tipo[1]==tipo[2]&&tipo[2]==tipo[3]&&tipo[3]==tipo[4])
 	{
-		mvprintw(11,0,"mismo Manjar,Ganancia:%d",apuesta*5);
+		mvprintw(10,48,"mismo Manjar,Ganancia:%d",apuesta*5);
 		return apuesta*5;
 	}else if (numeros[0]+1==numeros[1]&&numeros[1]+1==numeros[2]&&numeros[2]+1==numeros[3]||numeros[1]+1==numeros[2]&&numeros[2]+1==numeros[3]&&numeros[3]+1==numeros[4]||numeros[0]+1==numeros[1]&&numeros[1]==numeros[2]&&numeros[2]+1==numeros[3]&&numeros[3]+1==numeros[4]||numeros[0]+1==numeros[1]&&numeros[1]+1==numeros[2]&&numeros[2]==numeros[3]&&numeros[3]+1==numeros[4])
 	{
-		mvprintw(11,0,"Escalera de 4,Ganancia:%d",apuesta*4);
+		mvprintw(10,48,"Escalera de 4,Ganancia:%d",apuesta*4);
 		return apuesta*4;
 	}else if(numeros[0]==numeros[1]&&numeros[1]==numeros[2]||numeros[1]==numeros[2]&&numeros[2]==numeros[3]||numeros[2]==numeros[3]&&numeros[3]==numeros[4]){
-		mvprintw(11,0,"Trio,Ganancia:%d",apuesta*3);
+		mvprintw(10,48,"Trio,Ganancia:%d",apuesta*3);
 		return apuesta*3;
 	}else if (numeros[0]==1&&numeros[0]==numeros[1]&&numeros[2]==11&&numeros[2]==numeros[3]||numeros[0]==1&&numeros[0]==numeros[1]&&numeros[3]==11&&numeros[3]==numeros[4]||numeros[1]==1&&numeros[1]==numeros[2]&&numeros[3]==11&&numeros[3]==numeros[4])
 	{
-		mvprintw(11,0,"Dos pares,Ganancia:%d",apuesta*2);
+		mvprintw(10,48,"Dos pares,Ganancia:%d",apuesta*2);
 		return apuesta*2;
 	}else if (numeros[0]==11&&numeros[0]==numeros[1]&&numeros[2]==12&&numeros[2]==numeros[3]||numeros[0]==11&&numeros[0]==numeros[1]&&numeros[3]==12&&numeros[3]==numeros[4]||numeros[1]==11&&numeros[1]==numeros[2]&&numeros[3]==12&&numeros[3]==numeros[4])
 	{
-		mvprintw(11,0,"Dos pares,Ganancia:%d",apuesta*2);
+		mvprintw(10,48,"Dos pares,Ganancia:%d",apuesta*2);
 		return apuesta*2;
 	}else if (numeros[0]==12&&numeros[0]==numeros[1]&&numeros[2]==13&&numeros[2]==numeros[3]||numeros[0]==12&&numeros[0]==numeros[1]&&numeros[3]==13&&numeros[3]==numeros[4]||numeros[1]==12&&numeros[1]==numeros[2]&&numeros[3]==13&&numeros[3]==numeros[4])
 	{
-		mvprintw(11,0,"Dos pares,Ganancia:%d",apuesta*2);
+		mvprintw(10,48,"Dos pares,Ganancia:%d",apuesta*2);
 		return apuesta*2;
 	}else if(numeros[0]==11&&numeros[0]==numeros[1]||numeros[1]==11&&numeros[1]==numeros[2]||numeros[2]==11&&numeros[2]==numeros[3]||numeros[3]==11&&numeros[3]==numeros[4]){
-		mvprintw(11,0,"Par de jacks,no pierdes nada");
+		mvprintw(10,48,"Par de jacks,no pierdes nada");
 		return apuesta;
 	}
 	else if(numeros[0]==12&&numeros[0]==numeros[1]||numeros[1]==12&&numeros[1]==numeros[2]||numeros[2]==12&&numeros[2]==numeros[3]||numeros[3]==12&&numeros[3]==numeros[4]){
-		mvprintw(11,0,"Par de jacks,no pierdes nada");
+		mvprintw(10,48,"Par de jacks,no pierdes nada");
 		return apuesta;
 	}
 	else if(numeros[0]==13&&numeros[0]==numeros[1]||numeros[1]==13&&numeros[1]==numeros[2]||numeros[2]==13&&numeros[2]==numeros[3]||numeros[3]==13&&numeros[3]==numeros[4]){
-		mvprintw(11,0,"Par de jacks,no pierdes nada");
+		mvprintw(10,48,"Par de jacks,no pierdes nada");
 		return apuesta;
 	}
 	else if(numeros[0]==1&&numeros[0]==numeros[1]||numeros[1]==1&&numeros[1]==numeros[2]||numeros[2]==1&&numeros[2]==numeros[3]||numeros[3]==1&&numeros[3]==numeros[4]){
-		mvprintw(11,0,"Par de jacks,no pierdes nada");
+		mvprintw(10,48,"Par de jacks,no pierdes nada");
 		return apuesta;
 	}else{
-		mvprintw(11,0,"Derrota,pierdes lo que apostaste");
+		mvprintw(10,48,"Derrota,pierdes lo que apostaste");
 		return 0;
 	}
 }	
@@ -258,24 +258,24 @@ int juego(Carta** baraja,int*ies,int*jotas,int*opciones_carta,int control_elecci
 		limpiar();
 		control=-1;
 		int apuesta;
-		if(control_rondas==1){
+		if(control_rondas!=2){
 			apuesta=apuestas(dinero);
 			dinero=dinero-apuesta;
 		}
 		limpiar();	
-		/*ies[0]=0;
+		ies[0]=0;
 		jotas[0]=0;
-		ies[1]=1;
-		jotas[1]=0;
+		ies[1]=0;
+		jotas[1]=9;
 		ies[2]=0;
-		jotas[2]=3;
-		ies[3]=1;
-		jotas[3]=3;
-		ies[4]=2;
-		jotas[4]=3;*/
+		jotas[2]=10;
+		ies[3]=0;
+		jotas[3]=11;
+		ies[4]=0;
+		jotas[4]=12;
 		for (int i = 0; i < 5; ++i)
 		{	
-			if(i==0&&opciones_carta[i]==0){
+			/*if(i==0&&opciones_carta[i]==0){
 				if(control_eleccion==1){
 					int revision=1;
 					int random_tipo=0;
@@ -395,7 +395,7 @@ int juego(Carta** baraja,int*ies,int*jotas,int*opciones_carta,int control_elecci
 					jotas[i]=rand()%13;
 				}
 			}					
-		}
+		*/}
 		for (int i = 0; i < 5; ++i)
 		{	
 			imprime_carta(baraja[ies[i]][jotas[i]],i);
@@ -436,24 +436,27 @@ int juego(Carta** baraja,int*ies,int*jotas,int*opciones_carta,int control_elecci
 		limpiar_y(12);
 		if (dinero+bonus!=0)
 		{
-			while(control!=0&&control!=1){
-				limpiar_y(12);
-				mvprintw(12,0,"-si ingresa presiona alguna tecla diferente a las opciones se le volvera a pedir-\nDesea continuar el juego, guardarlo o terminarlo?\n1-continuar\n2-terminar\n0-guardar");
-				mostrar_manos();
-				control=getch();
-				if(control==48){
+			if(control_rondas+2==3){
+				while(control!=0&&control!=1){
 					limpiar_y(12);
-					mvprintw(12,0,"si le da a la opcion podra continuar esta partida (presione cualquier tecla para volver al menu principal)");
-					return dinero;
-					control=0;
-				}else if(control==49){
-					control=1;
-				}else if (control==50){
-					control=0;
-					limpiar_y(12);
-					mvprintw(12,0,"El juego termino(presione cualquier tecla para volver al menu principal)");
-				}
-			}		
+					mvprintw(12,0,"-si ingresa presiona alguna tecla diferente a las opciones se le volvera a pedir-\nDesea continuar el juego, guardarlo o terminarlo?\n1-continuar\n2-terminar\n0-guardar");
+					mostrar_manos();
+					control=getch();
+					if(control==48){
+						limpiar_y(12);
+						mvprintw(12,0,"si le da a la opcion podra continuar esta partida (presione cualquier tecla para volver al menu principal)");
+						return dinero;
+						control=0;
+					}else if(control==49){
+						control=1;
+					}else if (control==50){
+						control=0;
+						limpiar_y(12);
+						mvprintw(12,0,"El juego termino(presione cualquier tecla para volver al menu principal)");
+					}
+				}	
+			}
+				
 		}else{
 			limpiar_y(12);
 			mvprintw(12,0,"Ya no dispone de saldo para continuar,Gracias por jugar(presione cualquier tecla para volver al menu principal)");
