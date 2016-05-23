@@ -6,15 +6,20 @@
 #include <cstdlib>
 #include <ctime>
 #include <stdlib.h>
+#include <fstream>
+using std::fstream;
+using std::ofstream;
+using std::ifstream;
 using std::cin;
 using std::ostringstream;
 using std::string;
 using std::atoi;
 void limpiar();
 void limpiar_y(int);
-void guardar();
+void guardar(int);
+int cargar();
 int apuestas(int);
-int juego(Carta**,int*,int*,int*,int,int,int);
+void juego(Carta**,int*,int*,int*,int,int,int);
 int resultados(Carta**,int*,int*,int);
 Carta** barajas(const int,const int);
 void imprime_carta(Carta,int);
@@ -32,6 +37,18 @@ int main(int argc, char const *argv[])
 	while(((z=getch())!=27)){
 		limpiar();	
 		getmaxyx(stdscr,s,c);
+		mvprintw(0,(c/2)-39,"*-----------------------------------------------------------------------------*");
+        mvprintw(1,(c/2)-39,"|    ***********    ***********     ****   ****   ***********   ***********   |");
+        mvprintw(2,(c/2)-39,"|    ***********    ***********     ****  ****    ***********   ***********   |");
+        mvprintw(3,(c/2)-39,"|    ****   ****    ****   ****     ********      ****          ****   ****   |");
+        mvprintw(4,(c/2)-39,"|    ****   ****    ****   ****     ******        ****          ****   ****   |");
+        mvprintw(5,(c/2)-39,"|    ***********    ****   ****     *****         ***********   ***********   |");
+        mvprintw(6,(c/2)-39,"|    ***********    ****   ****     ******        ***********   ***********   |");
+        mvprintw(7,(c/2)-39,"|    ****           ****   ****     *******       ****          **** ****     |");
+        mvprintw(8,(c/2)-39,"|    ****           ****   ****     ********      ****          ****  ****    |");
+        mvprintw(9,(c/2)-39,"|    ****           ***********     **** ****     ***********   ****   ****   |");
+        mvprintw(10,(c/2)-39,"|    ****           ***********     ****   ****   ***********   ****    ****  |");
+        mvprintw(11,(c/2)-39,"*-----------------------------------------------------------------------------*");
 		mvprintw(s/2,(c/2)-15,"------------------------------");
 		mvprintw((s/2)+1,(c/2)-15,"|      Nuevo juego(enter)    |");
 		mvprintw((s/2)+2,(c/2)-15,"| Continuar saldo anterior(b)|");
@@ -49,7 +66,7 @@ int main(int argc, char const *argv[])
 			{
 				opciones_carta[i]=0;
 			}
-			saldo_guardado=juego(baraja,ies,jotas,opciones_carta,control_eleccion,dinero,control_rondas);
+			juego(baraja,ies,jotas,opciones_carta,control_eleccion,dinero,control_rondas);
 			delete[] ies;
 			delete[] jotas;
 			delete[] opciones_carta;
@@ -65,7 +82,7 @@ int main(int argc, char const *argv[])
 			{
 				opciones_carta[i]=0;
 			}
-			saldo_guardado=juego(baraja,ies,jotas,opciones_carta,control_eleccion,saldo_guardado,control_rondas);
+			juego(baraja,ies,jotas,opciones_carta,control_eleccion,cargar(),control_rondas);
 			delete[] ies;
 			delete[] jotas;
 			delete[] opciones_carta;
@@ -249,10 +266,23 @@ int resultados(Carta** baraja,int* ies,int* jotas,int apuesta){
 		return 0;
 	}
 }	
-void guardar(){
-
+void guardar(int saldo){
+	ofstream mfile;
+	mfile.open("saldo.txt",std::ios::trunc);
+	mfile << saldo;
+	mfile.close();
 }
-int juego(Carta** baraja,int*ies,int*jotas,int*opciones_carta,int control_eleccion,int dinero,int control_rondas){
+int cargar(){
+	string line;
+	ifstream mfile ("saldo.txt");
+	if (mfile.is_open())
+	{
+		getline(mfile,line);
+		mfile.close();
+	}
+	return atoi(line.c_str());
+}
+void juego(Carta** baraja,int*ies,int*jotas,int*opciones_carta,int control_eleccion,int dinero,int control_rondas){
 	int control=-1;
 	while(control!=0){
 		limpiar();
@@ -444,13 +474,14 @@ int juego(Carta** baraja,int*ies,int*jotas,int*opciones_carta,int control_elecci
 					control=getch();
 					if(control==48){
 						limpiar_y(12);
+						guardar(dinero);
 						mvprintw(12,0,"si le da a la opcion-continuar saldo anterior-podra continuar esta partida (presione cualquier tecla para volver al menu principal)");
-						return dinero;
 						control=0;
 					}else if(control==49){
 						control=1;
 					}else if (control==50){
 						control=0;
+						guardar(500);
 						limpiar_y(12);
 						mvprintw(12,0,"El juego termino(presione cualquier tecla para volver al menu principal)");
 					}
@@ -464,7 +495,6 @@ int juego(Carta** baraja,int*ies,int*jotas,int*opciones_carta,int control_elecci
 		}				
 		control_eleccion=1;
 	}
-	return 500;
 }
 Carta** barajas(const int tipo,const int numero){
 	Carta** baraja=new Carta*[tipo];
